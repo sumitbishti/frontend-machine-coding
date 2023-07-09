@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.4);
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+}
+.modal-container {
+	height: 100%;
+	display: flex;
+}
+.modal-content {
+	margin: auto;
+	background-color: red;
+	width: 40%;
+	height: 40%;
+	padding: 20px;
+	border: 1px solid #888;
+}
+.closeBtn {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.closeBtn:is(:focus, :hover) {
+	color: black;
+}
