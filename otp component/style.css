@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+}
+.otp-container{
+    margin: auto;
+}
+
+.input{
+    width: 40px;
+    border: none;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 3px solid grey;
+    pointer-events: none;   
+}
+
+.input:focus{
+    outline: none;  
+    border-color: orange;
+}   
