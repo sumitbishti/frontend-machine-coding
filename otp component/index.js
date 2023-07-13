@@ -3,6 +3,7 @@ const inputs = document.querySelectorAll(".input")
 
 inputs[0].focus()
 
+// for numbers and letters only
 const check = (str) => {
     return /^[a-zA-Z0-9]$/.test(str);
 }
@@ -32,12 +33,12 @@ otpContainer.addEventListener("click", (e) => {
 
 otpContainer.addEventListener("keydown", (e) => {
     const target = e.target
-    const value = target.value
     const key = e.key.toLocaleLowerCase()
 
     if (key === "backspace") {
         e.preventDefault();
         target.value = "";
+        
         if (target.previousElementSibling) {
             target.previousElementSibling.focus();
         }

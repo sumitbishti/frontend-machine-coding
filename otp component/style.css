@@ -19,9 +19,6 @@
     border-bottom: 3px solid grey;
     pointer-events: none;
 }
-/* .input:nth-child(1){
-    pointer-events: all;
-} */
 
 .input:focus{
     outline: none;  
