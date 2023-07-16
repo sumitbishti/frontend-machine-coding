@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    height: 100px;
+    background-color: red;
+    position: sticky;
+    top: 0;
+}
+
+.content-container{
+    min-height: 100vh;
+    /* flex-grow: 1; */
+    display: flex;
+}
+
+nav{
+    width: 300px;
+    background-color: orange;
+    flex-shrink: 0;
+}
+main{
+    flex-grow: 1;
+    background-color: blue;
+}
+aside{
+    width: 300px;
+    flex-shrink: 0;
+    background-color: orange;
+}
+footer{
+    background-color: red;
+    height: 100px;
+    position: sticky;
+    bottom: 0;
+}
+
