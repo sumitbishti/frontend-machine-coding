@@ -6,25 +6,35 @@ fetch('https://fakestoreapi.com/products')
     .then(res => res.json())
     .then((res) => {
         data = res
-        console.log(container)
-        
+
         data.forEach((card) => {
+            let coloredStars = parseInt(card.rating.rate)
+            let uncoloredStars = 5 - coloredStars
+
+            let allStarsDiv = document.createElement('div')
+            allStarsDiv.setAttribute("class", "all_star")
+
+            let allStarsDivContainer = document.createElement('div')
+
+            for (let i = 0; i < coloredStars; i++) {
+                allStarsDiv.innerHTML += `<span class="star-filled">&#9733;</span>`
+            }
+            for (let i = 0; i < uncoloredStars; i++) {
+                allStarsDiv.innerHTML += `<span >&#9734;</span>`
+            }
+
+            allStarsDivContainer.appendChild(allStarsDiv)
+
             container.innerHTML +=
                 `<div class="card">
                     <div class="card-container">
-                        <img class="image" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="product">
+                        <img class="image" src=${card.image} alt="product">
                         <div class="card-details">
-                            <h4>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-                            <p>men's clothing</p>
-                            <div class="">
-                                <span class="star-filled">&#9733;</span>
-                                <span class="star-filled">&#9733;</span>
-                                <span class="star-filled">&#9733;</span>
-                                <span class="star-filled">&#9733;</span>
-                                <span>&#9734;</span>
-                            </div>
+                            <h4>${card.title}</h4>
+                            <p>${card.category}</p>
+                            ${allStarsDivContainer.innerHTML}
                             <div class="rating-count">
-                                Rating Count : <span>0</span>
+                                Rating Count : <span>${card.rating.count}</span>
                             </div>
                         </div>
                     </div>

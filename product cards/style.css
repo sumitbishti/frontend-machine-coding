@@ -2,10 +2,16 @@
 	margin: 0;
 	padding: 0;
 }
+
 .container {
 	height: 100vh;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
-
+.all_star{
+	/* padding: 5px; */
+}
 .card {
 	width: 250px;
 	min-height: 300px;
@@ -16,12 +22,14 @@
     
 }
 .card-container{
+	/* margin-top: 20px; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .image {
+	margin-top: 10px;
 	width: 175px;
 	height: 175px;
 	object-fit: contain;
