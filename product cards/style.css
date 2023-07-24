@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	height: 100vh;
+}
+
+.card {
+	width: 250px;
+	min-height: 300px;
+	height: auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 25px;
+	margin: 0 auto;
+    
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+	width: 175px;
+	height: 175px;
+	object-fit: contain;
+}
+.card-details {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin: 20px 10px;
+}
+.rating-count {
+	/* display: flex; */
+	/* justify-content: flex-start; */
+}
+.star-filled{
+    color: yellow;
+}
+.btn {
+	display: flex;
+	justify-content: flex-end;
+}
+.buy-btn {
+    padding: 5px;
+	margin: 10px;
+	color: white;
+	background-color: #10e95a;
+	font-size: 20px;
+	border: none    ;
+	border-radius: 10px;
+	height: 40px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}

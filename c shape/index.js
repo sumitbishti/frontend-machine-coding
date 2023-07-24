@@ -19,7 +19,7 @@ boxContainer.addEventListener("click", (e) => {
 
             setTimeout(() => {
                 boxes[idx].classList.remove("green")
-            }, cnt * 1000);
+            }, cnt * 1000);w
         }
     }
 })
