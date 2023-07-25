@@ -27,7 +27,6 @@ fetch('https://fakestoreapi.com/products')
 
             container.innerHTML +=
                 `<div class="card">
-                    <div class="card-container">
                         <img class="image" src=${card.image} alt="product">
                         <div class="card-details">
                             <h4>${card.title}</h4>
@@ -37,7 +36,6 @@ fetch('https://fakestoreapi.com/products')
                                 Rating Count : <span>${card.rating.count}</span>
                             </div>
                         </div>
-                    </div>
                     <div class="btn">
                         <button class="buy-btn">
                             Buy Now
