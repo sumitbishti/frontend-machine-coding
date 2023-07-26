@@ -4,56 +4,57 @@
 }
 
 .container {
-	height: 100vh;
 	display: flex;
-	gap: 5px;
 	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.image {
+	width: 200px;
+	height: 150px;
+	margin-top: 10px;
+	object-fit: contain;
+	align-self: center;
 }
 
 .card {
 	width: 250px;
-	min-height: 300px;
+	margin-top: 10px;
 	height: auto;
+	display: flex;
+	flex-direction: column;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 25px;
-	margin: 10px auto;
-	display: flex;
-	flex-direction: column;
 }
 
-.image {
-	margin-top: 10px;
-	width: 175px;
-	height: 175px;
-	object-fit: contain;
-	align-self: center;
-}
-.card-details {
+.card-details{
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
+	padding: 15px;
 	gap: 5px;
-	margin: 20px 10px;
 }
-.rating-count {
-	/* display: flex; */
-	/* justify-content: flex-start; */
+
+.star-container{
+	margin-top: 5px;
 }
-.star-filled {
+
+.star_filled{
 	color: yellow;
 }
-.btn {
-	display: flex;
-	justify-content: flex-end;
-}
-.buy-btn {
-	padding: 5px;
-	margin: 10px;
+
+.buy-btn{
+	margin-bottom: 10px;
+	margin-right: 10px;
+	align-self: flex-end;
 	color: white;
 	background-color: #10e95a;
 	font-size: 20px;
 	border: none;
 	border-radius: 10px;
 	height: 40px;
+	width: auto;
+	padding: 5px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 }
