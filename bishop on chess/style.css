@@ -1,0 +1,23 @@
+h1 {
+	text-align: center;
+}
+
+.table{
+	margin: auto;
+}
+
+.box {
+	width: 70px;
+	height: 70px;
+	border: 1px solid black;
+}
+
+.white {
+	background-color: white;
+}
+.black {
+	background-color: black;
+}
+.blue {
+	background-color: blue;
+}
