@@ -20,7 +20,7 @@ fetch('https://fakestoreapi.com/products')
             for (let i = 0; i < unFilledStars; i++) {
                 starContainer.innerHTML += `<span">&#9734;</span>`
             }
-            
+
             tmpDiv.appendChild(starContainer)
 
             container.innerHTML += ` <div class="card">
