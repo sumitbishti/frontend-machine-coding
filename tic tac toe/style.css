@@ -8,9 +8,17 @@
     display: flex;
 }
 
+.table {
+    cursor: pointer;
+}
+
+.cursor-not-allowed{
+    cursor: not-allowed;
+}
+
 .game-container {
-    margin: auto;
     display: flex;
+    margin: auto;
     gap: 20px;
     flex-direction: column;
 }
@@ -43,12 +51,16 @@
     align-items: center;
 }
 
-.green {
-    background-color: green;
+.black {
+    background-color: black;
 }
 
-.yellow {
-    background-color: yellowgreen;
+.red {
+    background-color: red;
+}
+
+.result {
+    text-align: center;
 }
 
 td {

@@ -1,6 +1,10 @@
 let table = document.getElementById('table')
+let tableWrapper = document.getElementById('table-wrapper')
 let resetBtn = document.getElementById('resetBtn')
+let result = document.getElementById('result')
 let hash = {}
+let cross = true;
+let allFilled = 0;
 
 
 for (let i = 0; i < 3; i++) {
@@ -11,10 +15,10 @@ for (let i = 0; i < 3; i++) {
         td.setAttribute("data-index", `${i}-${j}`)
 
         if ((i + j) % 2 == 0) {
-            td.setAttribute('class', "yellow")
+            td.setAttribute('class', "red")
         }
         else {
-            td.setAttribute('class', "green")
+            td.setAttribute('class', "black")
         }
 
         tr.appendChild(td)
@@ -22,55 +26,90 @@ for (let i = 0; i < 3; i++) {
     table.appendChild(tr)
 }
 
-let cross = true;
+const check = () => {
 
-const check = (cellClass, row, col, dx, dy) => {
-    let cells = document.querySelectorAll('td')
+    //row
+    for (let i = 0; i < 3; i++) {
+        let set = new Set()
+        let player = ""
 
-    if (dx === 0 || dy === 0) {
-        let cnt = 0;
-        for (let i = row; i < 3 && i >= 0; i += dx) {
-            for (let j = col; j < 3 && j >= 0; j += dy) {
+        for (let j = 0; j < 3; j++) {
+            let key = `${i}-${j}`
+            player = hash[key]
+            set.add(player)
+        }
 
-            }
+        if (set.size === 1 && player) {
+            return `Player '${player}' has Won!`
         }
     }
-    else {
 
+    //col
+    for (let i = 0; i < 3; i++) {
+        let set = new Set()
+        let player = ""
+
+        for (let j = 0; j < 3; j++) {
+            let key = `${j}-${i}`
+            player = hash[key]
+            set.add(player)
+        }
+
+        if (set.size === 1 && player) {
+            return `Player '${player}' has Won!`
+        }
     }
-}
 
-const check2 = () => {
-    // let cells = document.querySelectorAll('td')
-    // console.log(cells)
+    //diagonal
+    let i = 0;
+    let set = new Set()
+    let player = "";
 
+    while (i < 3) {
+        let key = `${i}-${i}`
+        player = hash[key]
+        set.add(player)
+        i++;
+    }
+    if (set.size === 1 && player) {
+        return `Player '${player}' has Won!`
+    }
+
+    //anti-diagonal
+    i = 0;
+    let n = 2;
+    set.clear()
+    player = ""
+    while (i < 3) {
+        let key = `${i}-${n - i}`
+        player = hash[key]
+        set.add(player)
+        i++;
+    }
+    if (set.size === 1 && player) {
+        return `Player '${player}' has Won!`
+    }
+
+    return "Match Draw!!!"
 }
 
 table.addEventListener("click", (e) => {
+    let str = e.target.dataset.index;
+    if (!str || hash[str]) return;
+
+    hash[str] = cross ? "X" : "O";
+    allFilled++;
+
     let cellClass = e.target.classList[0]
     e.target.setAttribute("class", `${cellClass} ${cross ? 'cross' : 'zero'}`)
     cross = !cross
 
-    const [row, col] = e.target.dataset.index.split('-').map(val => parseInt(val))
-    // if(check(cellClass, row, col, 1, 0)) {}
-
-    for (let i = 0; i < 3; i++) {
-        let set = new Set();
-        let player = "";
-        for (let j = 0; j < 3; j++) {
-            let key = `${i}-${j}`;
-            set.add(hash[key]);
-            player = hash[key];
-        }
-
-        console.log(set)
-
-        if (set.size == 1 && player) {
-            return `Player ${player} Win`;
-        }
+    let res = check()
+    if (allFilled === 9 || res.includes('Won')) {
+        result.textContent = res
+        table.style.pointerEvents = 'none'
+        tableWrapper.style.cursor = "not-allowed"
     }
-
-    // check2()
 })
 
 resetBtn.addEventListener("click", (e) => {
@@ -84,4 +123,9 @@ resetBtn.addEventListener("click", (e) => {
         cell.classList.remove('zero')
     })
     cross = true;
+    hash = {}
+    allFilled = 0
+    result.textContent = ""
+    table.style.pointerEvents = "auto"
+    tableWrapper.style.cursor = "pointer"
 })
