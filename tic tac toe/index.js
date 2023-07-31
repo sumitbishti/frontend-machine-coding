@@ -64,7 +64,7 @@ const checkWin = () => {
         for (let j = 0; j < 3; j++) {
             let str = `${j}-${i}`
             player = hash[str]
-            set.add(player)
+            set.add(player) 
         }
 
         if (set.size === 1 && player) {
