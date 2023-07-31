@@ -53,6 +53,7 @@ resetBtn.addEventListener("click", () => {
 
     board.style.pointerEvents = "auto"
     cursor.style.cursor = "pointer"
+    result.textContent = ""
 })
 
 
