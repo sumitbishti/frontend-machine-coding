@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const InfiniteScrollList = () => {
 	const [items, setItems] = useState([]);
 	const [page, setPage] = useState(1);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(null);
 
 	const fetchItems = async () => {
 		setLoading(true);
@@ -11,13 +11,13 @@ const InfiniteScrollList = () => {
 			const response = await fetch(
 				`https://openlibrary.org/search.json?q=abc&page=${page}`
 			);
+
 			const data = await response.json();
-            const newItems = [...items, ...data.docs]
-            setItems(newItems)
-			// setItems((prevItems) => [...prevItems, ...data.docs]);
+			console.log(data);
+			setItems((prevItems) => [...prevItems, ...data.docs]);
 			setPage((prevPage) => prevPage + 1);
 		} catch (error) {
-			console.error("Error fetching items:", error);
+			console.log("errrrrrrr", error);
 		}
 		setLoading(false);
 	};
@@ -30,10 +30,10 @@ const InfiniteScrollList = () => {
 			fetchItems();
 		}
 	};
-
 	useEffect(() => {
 		fetchItems();
 		window.addEventListener("scroll", handleScroll);
+
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
@@ -41,15 +41,15 @@ const InfiniteScrollList = () => {
 
 	return (
 		<div>
-			<h1>Infinite Scroll Example</h1>
+			<h2>Infinite Scroll</h2>
 			<ul>
-				{items.map((item, index) => (
-					<li key={index}>{item.title}</li>
-				))}
+				{items.map((item, index) => {
+					return <li key={index}>{item.title}</li>;
+				})}
 			</ul>
+
 			{loading && <p>Loading...</p>}
 		</div>
 	);
 };
-
 export default InfiniteScrollList;
