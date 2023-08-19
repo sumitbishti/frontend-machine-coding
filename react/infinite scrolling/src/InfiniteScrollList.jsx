@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const InfiniteScrollList = () => {
+const InfiniteScrollList = ({ baseUrl, query }) => {
 	const [items, setItems] = useState([]);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(null);
@@ -8,12 +8,9 @@ const InfiniteScrollList = () => {
 	const fetchItems = async () => {
 		setLoading(true);
 		try {
-			const response = await fetch(
-				`https://openlibrary.org/search.json?q=abc&page=${page}`
-			);
-
+			const response = await fetch(`${baseUrl}?q=${query}&page=${page}`);
 			const data = await response.json();
-			console.log(data);
+
 			setItems((prevItems) => [...prevItems, ...data.docs]);
 			setPage((prevPage) => prevPage + 1);
 		} catch (error) {
