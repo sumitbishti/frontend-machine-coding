@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-// import debounce from "lodash/debounce";
+import { useState, useEffect } from "react";
 
-const InfiniteScrollList = () => {
+const InfiniteScrollLogRocket = () => {
 	const [items, setItems] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 	const [page, setPage] = useState(1);
-	const [loading, setLoading] = useState(null);
 
-	const fetchItems = async () => {
-		if (loading) return;
-
+	const fetchData = async () => {
 		console.log("fetch");
-		setLoading(true);
+		setIsLoading(true);
+
 		try {
 			const response = await fetch(
 				`https://openlibrary.org/search.json?q=abc&page=${page}`
@@ -20,40 +18,42 @@ const InfiniteScrollList = () => {
 			setItems((prevItems) => [...prevItems, ...data.docs]);
 			setPage((prevPage) => prevPage + 1);
 		} catch (error) {
-			console.log("errrrrrrr", error);
+			console.log("errrrr", error);
 		} finally {
-			setLoading(false);
+			setIsLoading(false);
 		}
 	};
 
+	useEffect(() => {
+		fetchData();
+	}, []);
+
 	const handleScroll = () => {
+		if (isLoading) return;
 		if (
 			window.innerHeight + document.documentElement.scrollTop >=
 			document.documentElement.offsetHeight - 100
 		) {
-			fetchItems();
+			fetchData();
 		}
 	};
-	useEffect(() => {
-		fetchItems();
-		window.addEventListener("scroll", handleScroll);
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [isLoading]);
 
 	return (
 		<div>
-			<h2>Infinite Scroll</h2>
+			<h2>Infinite Scrolling</h2>
 			<ul>
-				{items.map((item, index) => {
-					return <li key={index}>{item.title}</li>;
-				})}
+				{items.map((item, index) => (
+					<li key={index}>{item.title}</li>
+				))}
 			</ul>
-
-			{loading && <p>Loading...</p>}
+			{isLoading && <p>Loading...</p>}
 		</div>
 	);
 };
-export default InfiniteScrollList;
+
+export default InfiniteScrollLogRocket;
