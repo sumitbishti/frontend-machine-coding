@@ -39,6 +39,8 @@ const InfiniteScrollLogRocket = () => {
 	};
 
 	useEffect(() => {
+		if (isLoading) return;
+		console.log("handleScroll");
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [isLoading]);
