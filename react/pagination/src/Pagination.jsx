@@ -2,8 +2,13 @@ import "./pagination.css";
 const renderData = (data) => {
 	return (
 		<ul>
-			{data.map((d, idx) => (
-				<li key={idx}>{d.title}</li>
+			{data.map((d) => (
+				<li key={d["_id"]}>
+					{" "}
+					The passenger having id {d["_id"].slice(
+						d["_id"].length - 5
+					)} using {d.airline[0].name} airlines
+				</li>
 			))}
 		</ul>
 	);
@@ -12,7 +17,7 @@ const Pagination = (props) => {
 	// init
 	const { currentPage, maxPageLimit, minPageLimit } = props;
 	const totalPages = props.response.totalPages - 1;
-	const data = props.response;
+	const data = props.response.data;
 
 	// build page numbers list based on total number of pages
 	const pages = [];

@@ -12,11 +12,11 @@ const PassengersList = () => {
 	useEffect(() => {
 		setLoading(true);
 		fetch(
-			`https://openlibrary.org/search.json?q=abc&page=${currentPage}&size=5`
+			`https://api.instantwebtools.net/v1/passenger?currentPage=${currentPage}&size=5`
 		)
 			.then((response) => response.json())
 			.then((json) => {
-				setData(json.docs);
+				setData(json);
 				setLoading(false);
 			});
 	}, [currentPage]);
